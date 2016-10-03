@@ -1,0 +1,21 @@
+<div>
+    <h3>
+        <a href="<?php echo $this->url('news/detail', array('id' => $news->getId())); ?>">
+        <?php echo $news->getTitle(); ?></a>
+    </h3>
+    <ul class="list-unstyled breadcrumb">
+        <li><?php echo $news->getDate(); ?></li>
+        <li><?php echo $news->getTheme(); ?></li>
+    </ul>
+    <p>
+        <?php
+        $anons_len = 256;
+        if (strlen($news->getText()) > $anons_len) {
+            echo substr($news->getText(), 0, $anons_len);
+            printf("...[<a href=\"%s\">читать далее</a>]", $this->url('news/detail', array('id' => $news->getId())));
+        } else {
+            echo $news->getText();
+        }
+        ?>
+    </p>
+</div>

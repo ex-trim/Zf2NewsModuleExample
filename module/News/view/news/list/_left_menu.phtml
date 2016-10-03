@@ -1,0 +1,32 @@
+<?php if(!empty($news_archive)) : ?>
+<div>
+    <?php foreach ($news_archive as $year => $months) : ?>
+    <h4><a href="<?php echo $this->url('archive', array('year' => $year)); ?>"><?php echo $year; ?></a></h4>
+    <ul>
+        <?php foreach ($months as $month) : ?>
+            <?php
+            $dateObject = DateTime::createFromFormat('!m', $month['month']);
+            $monthName  = $dateObject->format('F');
+            ?>
+            <li><a href="<?php echo $this->url('archive', array('year' => $year, 'month' => $monthName)); ?>"><?php echo $monthName; ?></a>
+                <span>(<?php echo $month['count']; ?>)</span>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+    <?php endforeach; ?>
+</div>
+<?php endif; ?>
+<?php if(!empty($by_topic)) : ?>
+<div>
+    <h4>Topics</h4>
+    <ul>
+        <?php foreach ($by_topic as $theme) : ?>
+            <li>
+                <a href="<?php echo $this->url('theme', array('theme' => $theme['theme'])); ?>"><?php echo $theme['theme']; ?></a>
+                <span>(<?php echo $theme['news_count']; ?>)</span>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</div>
+<?php endif; ?>
+

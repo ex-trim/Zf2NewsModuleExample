@@ -1,0 +1,21 @@
+<?php
+
+$title = "News for $month $year";
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p><a href="<?php echo $this->url('news'); ?>"><< Back</a></p>
+<div class="left-menu">
+    <?php echo $this->partial('_left_menu.phtml', array('news_archive' => $news_archive, 'by_topic' => $by_topic)); ?>
+</div>
+<div class="content">
+    <?php foreach ($news as $item) : ?>
+        <?php echo $this->partial('_news_item.phtml', array('news' => $item)); ?>
+    <?php endforeach; ?>
+</div>
+<div class="delimiter"></div>
+<?php
+if ((count($news) > 0) && ($paginator->getTotalPages() > 1)) {
+    echo $this->partial('_paginator.phtml', array('paginator' => $paginator, 'route' => 'archive'));
+}
+?>

@@ -1,0 +1,24 @@
+<?php
+$title = 'Themes list';
+$this->headTitle($this->escapeHtml($title));
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p><a href="<?php echo $this->url('themes/add'); ?>">Add new theme</a></p>
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>&nbsp;</th>
+    </tr>
+    <?php foreach ($this->themes as $theme) : ?>
+    <tr>
+        <td><?php echo $theme->getId(); ?></td>
+        <td><?php echo $theme->getName(); ?></td>
+        <td>
+            <a href="<?php echo $this->url('themes/edit', array('id' => $theme->getId())); ?>">Edit</a>
+            <a href="<?php echo $this->url('themes/delete', array('id' => $theme->getId())); ?>">Delete</a>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+</table>

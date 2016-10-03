@@ -1,0 +1,10 @@
+<?php
+echo $this->form()->openTag($form);
+
+echo $this->formHidden($form->get('theme-fieldset')->get('theme_id')); ?>
+
+<div class="form-group"><?php echo $this->formRow($form->get('theme-fieldset')->get('name')); ?></div>
+<div class="form-group"><?php echo $this->formRow($form->get('submit')); ?></div>
+
+<?php
+echo $this->form()->closeTag($form);

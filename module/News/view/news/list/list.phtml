@@ -1,0 +1,39 @@
+<?php
+
+$title = 'News';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p><a href="<?php echo $this->url('news/add'); ?>">Add news item</a> |
+    <a href="<?php echo $this->url('news'); ?>">All news</a></p>
+<table class="table">
+    <tr>
+        <th>Date</th>
+        <th>Title</th>
+        <th>Text</th>
+        <th>&nbsp;</th>
+    </tr>
+    <?php foreach ($news as $item) : ?>
+    <tr>
+        <td><?php echo $item->getDate(); ?></td>
+        <td><a href="<?php echo $this->url('news/detail',
+                array('action' => 'detail', 'id' => $item->getId())); ?>"><?php echo $this->escapeHtml($item->getTitle()); ?></a></td>
+        <td><?php
+            $anons_len = 256;
+            if (strlen($item->getText()) > $anons_len) {
+                echo substr($item->getText(), 0, $anons_len);
+                printf("...[<a href=\"%s\">читать далее</a>]", $this->url('news/detail', array('id' => $item->getId(), false, false)));
+            } else {
+                echo $item->getText();
+            }
+            ?>
+        </td>
+        <td>
+            <a href="<?php echo $this->url('news/edit',
+                array('action' => 'edit', 'id' => $item->getId())); ?>">Edit</a>
+            <a href="<?php echo $this->url('news/delete',
+                array('action' => 'delete', 'id' => $item->getId())); ?>">Delete</a>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+</table>

@@ -1,0 +1,23 @@
+<?php
+echo $this->form()->openTag($form);
+
+echo $this->formHidden($form->get('news-fieldset')->get('news_id')); ?>
+
+<div class="form-group"><?php echo $this->formRow($form->get('news-fieldset')->get('date')); ?></div>
+<div class="form-group"><?php echo $this->formRow($form->get('news-fieldset')->get('title')); ?></div>
+<div class="form-group"><?php echo $this->formRow($form->get('news-fieldset')->get('text')); ?></div>
+<div class="form-group"><?php echo $this->formRow($form->get('news-fieldset')->get('theme')); ?></div>
+<div class="form-group"><?php echo $this->formRow($form->get('submit')); ?></div>
+
+<?php
+echo $this->form()->closeTag($form); ?>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $( function() {
+        $( "#datepicker" ).datepicker({
+            dateFormat: "dd/mm/yy"
+        });
+    } );
+</script>

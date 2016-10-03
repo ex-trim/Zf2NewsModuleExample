@@ -1,0 +1,23 @@
+<?php
+    $currentPage    = $paginator->getCurrentPage();
+    $totalPages     = $paginator->getTotalPages();
+?>
+<div class="pager center-block">
+    <ul class="pagination">
+        <?php if ($currentPage > 1) : ?>
+        <li><a href="<?php echo $this->url($route, array('page' => 1), false, true) ?>">&laquo;</a></li>
+        <?php endif; ?>
+
+        <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
+            <?php if ($i == (int) $currentPage) : ?>
+                <li class="active"><a href="<?php echo $this->url($route, array('page' => $i), false, true); ?>"><?php echo $i; ?></a></li>
+            <?php else : ?>
+                <li><a href="<?php echo $this->url($route, array('page' => $i), false, true); ?>"><?php echo $i; ?></a></li>
+            <?php endif; ?>
+        <?php endfor; ?>
+
+        <?php if ($currentPage < $totalPages) : ?>
+        <li><a href="<?php echo $this->url($route, array('page' => $totalPages), false, true); ?>">&raquo;</a></li>
+        <?php endif; ?>
+    </ul>
+</div>

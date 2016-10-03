@@ -1,0 +1,13 @@
+<?php
+$title = 'Delete "' . $this->theme->getName() . '" confirmation';
+$this->headTitle($this->escapeHtml($title));
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p><a href="<?php echo $this->url('news/list'); ?>"><< Back</a></p>
+<p>
+    Are you sure want to delete '<?php echo $this->theme->getName(); ?>'?
+</p>
+<form action="<?php echo $this->url('themes/delete', array(), true); ?>" method="post">
+    <input type="submit" name="delete_confirmation" value="yes">
+    <input type="submit" name="delete_confirmation" value="no">
+</form>
